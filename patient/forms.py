@@ -5,7 +5,8 @@ from .models import Patient
 class PatientForm(ModelForm):
     birth_day = forms.DateField(
         widget=forms.DateInput(format='%d/%m/%Y'),
-        input_formats=['%d/%m/%Y']
+        input_formats=['%d/%m/%Y'],
+        
     )
 
     class Meta:
@@ -14,3 +15,7 @@ class PatientForm(ModelForm):
         widgets = {
             'birth_day': forms.DateInput(attrs={'type': 'date'})
         }
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['birth_day'].label = "BIRTH DAY (DD/MM/YYY)"
