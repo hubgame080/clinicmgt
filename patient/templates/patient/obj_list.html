@@ -1,0 +1,78 @@
+
+{% if messages %}
+<div id="alert-msg" class="alert alert-primary mb-3" role="alert">{{ messages|safe }}</div>
+{% endif %}
+
+<table class="table" id="multi_col_order">
+    <thead>
+      <tr>
+        <th class="cell">Name</th>
+        <th class="cell">Contact</th>
+        <th class="cell">Age</th>
+        <th class="cell">Email</th>
+        
+        <th class="cell text-end">Action</th>
+      </tr>
+    </thead>
+    <tbody class="table-border-bottom-0">
+        {% if objModels %}
+        {% for objModel in objModels %}
+
+            <tr>
+                <td class="cell">{{ objModel.last_name|upper }} {{ objModel.first_name|upper }}, {{ objModel.middle_name|upper }}</td>
+                <td class="cell">{{ objModel.mobile_no|upper  }}</td>
+                <td class="cell">{{ objModel.age  }}</td>
+                <td >{{ objModel.email  }}</td>
+                
+                <td class="cell">
+                    <div class="app-card-footer ">
+                        <div class="float-end">
+                            <div class="btn-list">
+
+                            
+                                <button type="button" class="btn btn-xs btn-primary updateBtn"
+                                data-bs-toggle="modal"
+                                data-bs-target="#backDropModal"
+                                data-url="{% url 'patient-update' objModel.id  %}"
+                                >Edit</button>
+                              
+                                <a  href="" 
+                                class=" btn btn-xs waves-effect waves-light btn-info"> 
+                                    History
+                                </a>  
+
+
+                                <button type="button" class="btn btn-xs btn-danger deleteBtn"
+                                data-bs-toggle="modal"
+                                data-bs-target="#backDropModal"
+                                data-url="{% url 'patient-delete' objModel.id  %}"
+                                >Delete</button>
+        
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+
+        {% endfor %}
+    {% else %}
+        <tr>
+            <td colspan="7" class="text-center bg-warning text-white">No Data</td>
+        </tr>
+    {% endif %}
+    </tbody>
+  </table>
+
+{% block script %}
+<script>
+  
+  $("#alert-msg").fadeTo(4000, 500).slideUp(500, function(){
+      $("#alert-msg").slideUp(500);
+  });  
+
+
+</script>
+
+{% endblock script %}
+
+

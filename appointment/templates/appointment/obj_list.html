@@ -1,0 +1,73 @@
+
+{% if messages %}
+<div id="alert-msg" class="alert alert-primary mb-3" role="alert">{{ messages|safe }}</div>
+{% endif %}
+
+<table class="table" id="multi_col_order">
+    <thead>
+      <tr>
+        <th class="cell">Name</th>
+        <th class="cell">Set Time</th>
+        <th class="cell">Set Date</th>
+        <th class="cell">Status</th>
+        
+        <th class="cell text-end">Action</th>
+      </tr>
+    </thead>
+    <tbody class="table-border-bottom-0">
+        {% if objModels %}
+        {% for objModel in objModels %}
+
+            <tr>
+                <td class="cell">{{ objModel.patient|upper }}</td>
+                <td class="cell">{{ objModel.set_time }}</td>
+                <td class="cell">{{ objModel.set_date  }}</td>
+                <td >{{ objModel.get_status_display|upper  }}</td>
+                
+                <td class="cell">
+                    <div class="app-card-footer ">
+                        <div class="float-end">
+                            <div class="btn-list">
+
+                                <button type="button" class="btn btn-xs btn-primary updateBtn"
+                                data-bs-toggle="modal"
+                                data-bs-target="#backDropModal"
+                                data-url="{% url 'appointment-update' objModel.id  %}"
+                                >Edit</button>
+                              
+            
+
+                                <button type="button" class="btn btn-xs btn-danger deleteBtn"
+                                data-bs-toggle="modal"
+                                data-bs-target="#backDropModal"
+                                data-url="{% url 'appointment-delete' objModel.id  %}"
+                                >Delete</button>
+        
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+
+        {% endfor %}
+    {% else %}
+        <tr>
+            <td colspan="7" class="text-center bg-warning text-white">No Data</td>
+        </tr>
+    {% endif %}
+    </tbody>
+  </table>
+
+{% block script %}
+<script>
+  
+  $("#alert-msg").fadeTo(4000, 500).slideUp(500, function(){
+      $("#alert-msg").slideUp(500);
+  });  
+
+
+</script>
+
+{% endblock script %}
+
+

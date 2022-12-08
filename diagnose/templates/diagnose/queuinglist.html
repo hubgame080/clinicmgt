@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+
+<div class="container-xxl flex-grow-1 container-p-y">
+    <h4 class="fw-bold py-3 mb-4">
+      <span class="text-muted fw-light">{{PageName}} </span> 
+    </h4>
+    
+
+   
+    <div class="card">
+        <h5 class="card-header">LIST</h5>
+        <div class="table-responsive overlayY p-4 addObjtbl">
+            {% include 'diagnose/queuingobj_list.html'%}
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+
+{% block style %}
+    <link href="{% static 'datatable/css/dataTables.bootstrap5.min.css' %}" rel="stylesheet">
+    <style>
+        .hidden-th {
+            display: none;
+        }
+       .overlayY{
+        overflow-y: hidden !important;
+       }
+    </style>
+{% endblock style %}
+
+{% block script %}
+
+    <script src="{% static 'datatable/js/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'datatable/js/dataTables.bootstrap5.min.js' %}"></script>
+
+    <script src="{% static 'datatable/js/datatable-basic.init.min.js' %}"></script>
+
+
+    <script>
+        {% comment %} $('#alert-msg').hide(); {% endcomment %}
+        var loadForm = function () {
+          var btn = $(this);
+          $.ajax({
+            url: btn.attr("data-url"),
+            type: 'get',
+            dataType: 'json',
+    
+            success: function (data) {
+              $("#backDropModal .modal-content").html(data.html_form);
+            }
+          });
+        };
+    
+        var saveForm = function () {
+          var form = $(this);
+          $.ajax({
+            url: form.attr("action"),
+            data: form.serialize(),
+            type: form.attr("method"),
+            dataType: 'json',
+            success: function (data) {
+              if (data.form_is_valid) {
+                $(".addObjtbl").html(data.html_list);
+                $("#backDropModal").modal("hide");
+                $('#alert-msg').show();
+                $('#multi_col_order').DataTable().reload();
+              }
+              else {
+                $("#backDropModal .modal-content").html(data.html_form);
+              }
+            }
+          });
+          return false;
+        };
+    
+        $("#createBtn").click(loadForm);
+        $("#backDropModal" ).on("submit", "#createForm", saveForm);
+    
+        $(".addObjtbl").on("click", ".updateBtn", loadForm);
+        $("#backDropModal").on("submit", ".UpdateForm", saveForm);
+    
+        $(".addObjtbl").on("click", ".deleteBtn", loadForm);
+        $("#backDropModal").on("submit", ".DeleteForm", saveForm);
+       
+         
+          
+      </script>
+
+{% endblock script %}

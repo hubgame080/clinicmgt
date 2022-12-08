@@ -1,0 +1,71 @@
+
+{% if messages %}
+<div id="alert-msg" class="alert alert-primary mb-3" role="alert">{{ messages|safe }}</div>
+{% endif %}
+
+<table class="table" id="multi_col_order">
+    <thead>
+      <tr>
+        <th class="cell">Name</th>
+        <th class="cell">Status</th>
+        <th class="hidden-th"></th>
+        <th class="hidden-th"></th>
+        
+        <th class="cell text-end">Action</th>
+      </tr>
+    </thead>
+    <tbody class="table-border-bottom-0">
+        {% if objModels %}
+        {% for objModel in objModels %}
+
+            <tr>
+                <td class="cell">{{ objModel.patient|upper }}</td>
+                <td class="cell">{{ objModel.get_status_display|upper}}</td>
+                <td class="hidden-th"></td>
+                <td class="hidden-th"></td>
+                
+                <td class="cell">
+                    <div class="app-card-footer ">
+                        <div class="float-end">
+                            <div class="btn-list">
+                                <a href="{% url 'examine-update' objModel.id  %}" class="btn btn-info">Examine</a>
+                              
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+
+        {% endfor %}
+    {% else %}
+        <tr>
+            <td colspan="7" class="text-center bg-warning text-white">No Data</td>
+        </tr>
+    {% endif %}
+    </tbody>
+  </table>
+
+{% block script %}
+<script>
+  
+  $("#alert-msg").fadeTo(4000, 500).slideUp(500, function(){
+      $("#alert-msg").slideUp(500);
+  });  
+
+
+</script>
+
+{% endblock script %}
+
+
+{% block style %}
+<style>
+    .hidden-th {
+        display: none;
+    }
+    .overx {
+        overflow-x: hidden !important;
+    }
+</style>
+{% endblock style %}
+

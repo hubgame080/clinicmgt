@@ -1,0 +1,149 @@
+{% load static %}
+<aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+    <div class="app-brand demo">
+      <a href="" class="app-brand-link">
+        <span class="app-brand-logo demo">
+          {% comment %} <img src="{% static 'assets/img/logo.png' %}" alt="user image" class="d-block ms-0 ms-sm-4 rounded" style="height:50px;"> {% endcomment %}
+        </span>
+        <span class="app-brand-text  menu-text fw-bolder ms-2">Clinic <br/> Management</span>
+      </a>
+
+      <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
+        <i class="bx bx-chevron-left bx-sm align-middle"></i>
+      </a>
+    </div>
+
+    <div class="menu-inner-shadow"></div>
+
+    <ul class="menu-inner py-1">
+      <!-- Dashboard -->
+      <li class="menu-item active">
+        <a href="" class="menu-link">
+          <i class="menu-icon tf-icons bx bx-home-circle"></i>
+          <div data-i18n="Analytics">Dashboard</div>
+        </a>
+      </li>
+
+     
+
+      <li class="menu-header small text-uppercase">
+        <span class="menu-header-text">Pages</span>
+      </li>
+      <li class="menu-item">
+        <a href="javascript:void(0);" class="menu-link menu-toggle">
+          <i class="menu-icon tf-icons bx bx-dock-top"></i>
+          <div data-i18n="Account Settings">Account</div>
+        </a>
+        <ul class="menu-sub">
+          <li class="menu-item">
+            <a href="javascript:void(0);" class="menu-link">
+              <div data-i18n="Account">Users</div>
+            </a>
+          </li>
+          
+        </ul>
+      </li>
+      <li class="menu-item">
+        <a href="javascript:void(0);" class="menu-link menu-toggle">
+          <i class="menu-icon tf-icons bx bx-dock-top"></i>
+          <div data-i18n="Account Settings">Patient</div>
+        </a>
+        <ul class="menu-sub">
+          <li class="menu-item">
+            <a href="{% url 'patient-list' %}" class="menu-link">
+              <div data-i18n="Account">List</div>
+            </a>
+          </li>
+         
+        </ul>
+      </li>
+      <li class="menu-item">
+          <a href="javascript:void(0);" class="menu-link menu-toggle">
+            <i class="menu-icon tf-icons bx bx-dock-top"></i>
+            <div data-i18n="Account Settings">Appointment</div>
+          </a>
+          <ul class="menu-sub">
+            <li class="menu-item">
+              <a href="{% url 'appointment-list' %}" class="menu-link">
+                <div data-i18n="Account">List</div>
+              </a>
+            </li>
+            <li class="menu-item">
+              <a href="{% url 'appointmenttoday-list' %}" class="menu-link">
+                <div data-i18n="Account">Today</div>
+              </a>
+            </li>
+            
+          </ul>
+        </li>
+        <li class="menu-item">
+          <a href="javascript:void(0);" class="menu-link menu-toggle">
+            <i class="menu-icon tf-icons bx bx-dock-top"></i>
+            <div data-i18n="Account Settings">Diagnose</div>
+          </a>
+          <ul class="menu-sub">
+            <li class="menu-item">
+              <a href="{% url 'queuing-list' %}" class="menu-link">
+                <div data-i18n="Account">Today Queuing</div>
+              </a>
+            </li>
+            <li class="menu-item">
+              <a href="{% url 'examinetoday-list' %}" class="menu-link">
+                <div data-i18n="Account">Today Examine</div>
+              </a>
+            </li>
+            <li class="menu-item">
+              <a href="{% url 'diagnose-list' %}" class="menu-link">
+                <div data-i18n="Account">List</div>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="menu-item">
+          <a href="javascript:void(0);" class="menu-link menu-toggle">
+            <i class="menu-icon tf-icons bx bx-dock-top"></i>
+            <div data-i18n="Account Settings">Payment</div>
+          </a>
+          <ul class="menu-sub">
+            <li class="menu-item">
+              <a href="javascript:void(0);" class="menu-link">
+                <div data-i18n="Account">Today Invoice</div>
+              </a>
+            </li>
+            <li class="menu-item">
+              <a href="javascript:void(0);" class="menu-link">
+                <div data-i18n="Account">Invoice List</div>
+              </a>
+            </li>
+            <li class="menu-item">
+              <a href="javascript:void(0);" class="menu-link">
+                <div data-i18n="Account">Invoice Drug</div>
+              </a>
+            </li>
+            <li class="menu-item">
+              <a href="javascript:void(0);" class="menu-link">
+                <div data-i18n="Account">Invoice Consultation</div>
+              </a>
+            </li>
+          </ul>
+        </li>
+      <li class="menu-item">
+        <a href="javascript:void(0);" class="menu-link menu-toggle">
+          <i class="menu-icon tf-icons bx bx-dock-top"></i>
+          <div data-i18n="Account Settings">Setting</div>
+        </a>
+        <ul class="menu-sub">
+          <li class="menu-item">
+            <a href="javascript:void(0);" class="menu-link">
+              <div data-i18n="Account">Rate</div>
+            </a>
+          </li>
+         
+        </ul>
+      </li>
+     
+     
+     
+      
+    </ul>
+  </aside>
